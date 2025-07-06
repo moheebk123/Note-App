@@ -23,7 +23,7 @@ app.use(cookieParser());
 
 app.use(verifyAuthentication);
 
-app.use(routes.noteRoutes);
+app.use("/note", routes.noteRoutes);
 app.use("/user", routes.userRoutes);
 app.use("/auth", routes.authRoutes);
 app.use(routes.oauthRoutes);
