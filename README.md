@@ -85,14 +85,14 @@ A note application built with **Node.js**, **Express**, and **MongoDB**. It allo
 ---
 
 ## ✨ Screenshots
-- **Dashboard**
-![Home Page Without Logged In](./public/project/project-image-1.png)
 - **Register Page**
-![Register Page](./public/project/project-image-4.png)
+![Register Page](./project-images/project-image-1.png)
 - **Login Page**
-![Login Page](./public/project/project-image-5.png)
+![Login Page](./project-images/project-image-2.png)
+- **Dashboard**
+![Home Page Without Logged In](./project-images/project-image-3.png)
 - **Profile Page**
-![Profile Page](./public/project/project-image-6.png)
+![Profile Page](./project-images/project-image-4.png)
 
 ---
 
