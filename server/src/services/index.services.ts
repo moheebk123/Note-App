@@ -14,7 +14,6 @@ import {
   getNoteById,
   updateNote,
   deleteNote,
-  deleteUserNotes,
 } from "./note.services.ts";
 
 import {
@@ -32,9 +31,6 @@ import {
   pushNote,
   updateRefreshToken,
   updateVerification,
-  updateUserProfile,
-  updatePassword,
-  deleteUser,
 } from "./user.services.ts";
 
 export {
@@ -50,7 +46,6 @@ export {
   getNoteById,
   updateNote,
   deleteNote,
-  deleteUserNotes,
   createOAuthUser,
   linkOAuthUser,
   deleteOAuthUser,
@@ -62,7 +57,4 @@ export {
   pushNote,
   updateRefreshToken,
   updateVerification,
-  updateUserProfile,
-  updatePassword,
-  deleteUser,
 };

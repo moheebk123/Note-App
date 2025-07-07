@@ -25,9 +25,8 @@ app.use(cookieParser());
 app.use(verifyAuthentication);
 
 app.use("/note", routes?.noteRoutes);
-app.use("/user", routes?.userRoutes);
 app.use("/auth", routes?.authRoutes);
-app.use(routes?.oauthRoutes);
+app.use("/oauth/google", routes?.oauthRoutes);
 
 try {
   await connectDB();

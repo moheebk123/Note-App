@@ -1,13 +1,11 @@
 import { Router } from "express";
 
-import * as oauthControllers from "../controllers/index.controller.js";
+import * as oauthControllers from "../controllers/index.controller.ts";
 
 const router = Router();
 
-router.route("/oauth/google").get(oauthControllers.handleOAuthRedirect);
+router.route("/redirect").get(oauthControllers.handleOAuthRedirect);
 
-router
-  .route("/oauth-redirect/google/callback")
-  .get(oauthControllers.handleOAuthCallback);
+router.route("/callback").get(oauthControllers.handleOAuthCallback);
 
 export const oauthRoutes = router;

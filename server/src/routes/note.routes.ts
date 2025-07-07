@@ -1,12 +1,14 @@
 import { Router } from "express";
 
-import * as noteControllers from "../controllers/index.controller.js";
+import * as noteControllers from "../controllers/index.controller";
 
 const router = Router();
 
+router.get("/load", noteControllers.handleUserNotes);
+
 router.post("/add", noteControllers.handleAddNote);
 
-router.route("/edit/:id").post(noteControllers.handleEditNote);
+router.post("/edit/:id", noteControllers.handleEditNote);
 
 router.post("/delete/:id", noteControllers.handleDeleteNote);
 

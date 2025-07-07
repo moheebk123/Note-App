@@ -1,9 +1,5 @@
+import { OAuthInterface } from "src/types/oauth.ts";
 import { OAuthUser } from "../models/oauthUsers.model.ts";
-
-interface OAuthInterface {
-  provider: "google" | "internal";
-  providerAccountId: "internal" | string;
-}
 
 export const createOAuthUser = async (newOAuthUser: OAuthInterface) => {
   return await OAuthUser.create(newOAuthUser);
