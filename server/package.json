@@ -1,12 +1,13 @@
 {
-  "name": "url-shortener",
+  "name": "note-app",
   "version": "1.0.0",
   "description": "Note app using MERN with Auth and OAuth",
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "node --env-file=.env --watch app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon src/app.ts",
+    "build": "tsc",
+    "start": "node dist/app.js"
   },
   "author": "Moheeb Khan",
   "license": "ISC",
@@ -23,6 +24,14 @@
     "nodemailer": "^7.0.3"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "@types/cookie-parser": "^1.4.9",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^24.0.10",
+    "@types/nodemailer": "^6.4.17",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }

@@ -4,7 +4,7 @@ import {
 } from "../templates/email.template.js";
 import { transporter } from "../utils/index.utils.js";
 
-export const sendVerificationCode = async (email, verificationCode) => {
+export const sendVerificationCode = async (email: StringPayload, verificationCode: StringPayload) => {
   try {
     const mailOptions = {
       from: process.env.SENDER_EMAIL,
@@ -23,7 +23,7 @@ export const sendVerificationCode = async (email, verificationCode) => {
   }
 };
 
-export const sendResetPassword = async (email, resetPasswordLink) => {
+export const sendResetPassword = async (email: StringPayload, resetPasswordLink: StringPayload) => {
   try {
     const mailOptions = {
       from: process.env.SENDER_EMAIL,

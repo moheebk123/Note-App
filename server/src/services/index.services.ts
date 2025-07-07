@@ -4,9 +4,9 @@ import {
   generateToken,
   verifyToken,
   generateVerifyCode,
-} from "./auth.services.js";
+} from "./auth.services.ts";
 
-import { sendVerificationCode, sendResetPassword } from "./email.services.js";
+import { sendVerificationCode, sendResetPassword } from "./email.services.ts";
 
 import {
   loadNotes,
@@ -15,13 +15,13 @@ import {
   updateNote,
   deleteNote,
   deleteUserNotes,
-} from "./note.services.js";
+} from "./note.services.ts";
 
 import {
   createOAuthUser,
   linkOAuthUser,
   deleteOAuthUser,
-} from "./oauthUsers.services.js";
+} from "./oauthUsers.services.ts";
 
 import {
   createUser,
@@ -35,7 +35,7 @@ import {
   updateUserProfile,
   updatePassword,
   deleteUser,
-} from "./user.services.js";
+} from "./user.services.ts";
 
 export {
   hashPassword,

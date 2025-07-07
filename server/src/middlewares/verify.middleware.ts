@@ -1,6 +1,7 @@
+import { NextFunction, Request, Response } from "express";
 import * as services from "../services/index.services.js";
 
-export const verifyAuthentication = async (req, res, next) => {
+export const verifyAuthentication = async (req: Request, res: Response, next: NextFunction) => {
   const { access_token, refresh_token } = req.cookies;
   if (!access_token && !refresh_token) {
     req.user = null;
@@ -9,7 +10,10 @@ export const verifyAuthentication = async (req, res, next) => {
 
   try {
     const decodedAccessToken = services.verifyToken(access_token);
-    req.user = decodedAccessToken;
+    const loggedUser = await services.getUserById(decodedAccessToken?.id);
+    if (loggedUser) {
+      req.user = loggedUser;
+    }
 
     return next();
   } catch (error) {
@@ -25,7 +29,7 @@ export const verifyAuthentication = async (req, res, next) => {
           return next();
         }
 
-        const loggedUser = await services.getUserById(decodedRefreshToken.id);
+        const loggedUser = await services.getUserById(decodedRefreshToken?.id);
 
         if (loggedUser) {
           const newAccessToken = services.generateToken(
@@ -43,7 +47,7 @@ export const verifyAuthentication = async (req, res, next) => {
           req.user = loggedUser;
           res.cookie("access_token", newAccessToken, {
             httpOnly: true,
-            sameSite: "Strict",
+            sameSite: "lax",
             secure: false,
           });
           return next();

@@ -10,4 +10,4 @@ router.route("/edit/:id").post(noteControllers.handleEditNote);
 
 router.post("/delete/:id", noteControllers.handleDeleteNote);
 
-export const urlRoutes = router;
+export const noteRoutes = router;

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const note = mongoose.Schema(
+const note = new mongoose.Schema(
   {
     title: { type: String, required: true },
     description: { type: String, default: "" },

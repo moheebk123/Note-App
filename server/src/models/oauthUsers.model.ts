@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
-const oauthUserSchema = mongoose.Schema(
+const oauthUserSchema = new mongoose.Schema(
   {
     provider: {
       type: String,
       required: true,
-      enum: ["google", "github", "internal"],
+      enum: ["google", "internal"],
     },
     providerAccountId: {
       type: String,
