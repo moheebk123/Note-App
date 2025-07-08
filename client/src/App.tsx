@@ -106,8 +106,10 @@ const App = () => {
     const checkAuth = async () => {
       try {
         const response = await authService.checkAuth();
-        if (response) {
-          dispatch(userDataActions.updateUser(response.data));
+        if (response.success) {
+          dispatch(userDataActions.updateUser(response.user));
+        } else {
+          dispatch(userDataActions.updateUser(undefined));
         }
       } catch {
         dispatch(userDataActions.updateUser({}));
