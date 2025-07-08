@@ -132,7 +132,7 @@ const App = () => {
           dispatch(userDataActions.updateUser(undefined));
         }
       } catch {
-        dispatch(userDataActions.updateUser({}));
+        dispatch(userDataActions.updateUser(undefined));
       }
     };
     checkAuth();
