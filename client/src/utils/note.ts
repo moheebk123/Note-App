@@ -5,7 +5,7 @@ const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
 interface NoteType {
   title: string,
-  description: string | "" | undefined
+  description?: string
 }
 
 class NoteService {
@@ -13,8 +13,8 @@ class NoteService {
     const res = await axios.post(`${API_URL}/note/add`, noteData);
     return res.data;
   }
-  async updateNote(noteId: string) {
-    const res = await axios.post(`${API_URL}/note/edit/${noteId}`);
+  async updateNote(noteId: string, noteData: NoteType) {
+    const res = await axios.post(`${API_URL}/note/edit/${noteId}`, noteData);
     return res.data;
   }
   async deleteNote(noteId: string) {
