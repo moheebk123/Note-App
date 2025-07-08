@@ -8,14 +8,14 @@ const alertSlice = createSlice({
     message: "",
   },
   reducers: {
-    showAlert: (state, action) =>
-      (state = action.payload
+    showAlert: (_, action) =>
+      action.payload
         ? action.payload
         : {
             show: false,
             severity: "",
             message: "",
-          }),
+          },
   },
 });
 

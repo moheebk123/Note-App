@@ -7,10 +7,10 @@ const userDataSlice = createSlice({
     isAuthenticated: false,
   },
   reducers: {
-    updateUser: (state, action) =>
-      (state = action.payload
+    updateUser: (_, action) =>
+      action.payload
         ? { ...action.payload, isCheckingAuth: false, isAuthenticated: true }
-        : { isCheckingAuth: false, isAuthenticated: false }),
+        : { isCheckingAuth: false, isAuthenticated: false },
   },
 });
 
