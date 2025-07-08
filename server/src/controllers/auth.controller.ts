@@ -186,11 +186,10 @@ export const handleSendOtp = async (req: Request, res: Response) => {
       //   user.email,
       //   verificationCode
       // );
-      const loggedUser: UserType = await services.updateVerification(
+      await services.updateVerification(
         user._id.toString(),
         verificationCode
-      ) as UserType;
-      console.log(loggedUser);
+      );
         return res.status(200).json({
           message: "Failed to send code. Please try again!",
           success: true,
