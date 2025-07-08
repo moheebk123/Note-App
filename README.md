@@ -57,7 +57,8 @@ A note application built with **Node.js**, **Express**, and **MongoDB**. It allo
    ```bash
    PORT=YOUR-PORT
   MONGODB_URI=YOUR-MONGODB-URI
-  ORIGIN=YOUR-ORIGIN / http://localhost:YOUR-PORT
+  ORIGIN=YOUR-ORIGIN / FRONTEND-URL
+  HOST=YOUR-HOST / BACKEND-URL
   MONGODB_DB_NAME=YOUR-MONGODB-DATABASE-NAME
   JWT_SECRET=YOUR-JWT-SECRET
   JWT_REFRESH_SECRET=YOUR-JWT-REFRESH-TOKEN-SECRET
@@ -79,6 +80,7 @@ A note application built with **Node.js**, **Express**, and **MongoDB**. It allo
 
 - Go to **server** directory and run the below command:
    ```bash
+   npm run build
    npm start
    ```
 
@@ -91,8 +93,6 @@ A note application built with **Node.js**, **Express**, and **MongoDB**. It allo
 ![Login Page](./project-images/project-image-2.png)
 - **Dashboard**
 ![Home Page Without Logged In](./project-images/project-image-3.png)
-- **Profile Page**
-![Profile Page](./project-images/project-image-4.png)
 
 ---
 
