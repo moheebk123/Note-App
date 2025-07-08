@@ -4,7 +4,7 @@ A note application built with **Node.js**, **Express**, and **MongoDB**. It allo
 
 ---
 
-## Import Note
+## Important Note
 - Despite correctly setting up the Google client, authorized URLs, SMTP config, and handling environment variables, these two features are still running into issues — likely due to OAuth redirect handling and mail service permissions.
 - All other parts of the application — including core features — are complete and functional on local machine.
 
