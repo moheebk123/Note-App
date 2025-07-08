@@ -234,9 +234,11 @@ export const handleVerifyEmail = async (req: Request, res: Response) => {
   if (user._id && verificationCode === user.verificationCode) {
     await services.updateVerification(user._id.toString(), "");
 
+    const { _id, name, email, notes } = user;
     return res.status(200).json({
       message: "Email verified successfully",
       success: true,
+      user: { _id, name, email, notes },
     });
   }
   return res.status(400).json({
