@@ -2,6 +2,14 @@
 
 A note application built with **Node.js**, **Express**, and **MongoDB**. It allows users to create, edit, and delete notes—all in a simple and clean web interface.
 
+---
+
+## Note
+-Despite correctly setting up the Google client, authorized URLs, SMTP config, and handling environment variables, these two features are still running into issues — likely due to OAuth redirect handling and mail service permissions.
+-All other parts of the application — including core features — are complete and functional on local machine.
+
+---
+
 ## 🚀 Features
 
 - 🔐 User authentication (session-based with JWT)
@@ -42,7 +50,6 @@ A note application built with **Node.js**, **Express**, and **MongoDB**. It allo
 
 
 3. **Setup Brevo Account for SMTP Server**
-
 
 4. **Initialize OAuth Apps on Google OAuth Provider**
 

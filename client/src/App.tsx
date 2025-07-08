@@ -45,8 +45,9 @@ const LayoutHandler = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const path = window.location.href;
+    const path = location.pathname;
     const authPath = path.split("/");
+    console.log(authPath)
     const hashPath = path[path.length - 1] === "#" ? true : false;
 
     if (hashPath) {
@@ -77,7 +78,7 @@ const LayoutHandler = () => {
     setTimeout(() => {
       dispatch(alertActions.showAlert({}));
     }, 5000);
-  }, [location, navigate]);
+  }, []);
 
   return (
     <Suspense fallback={<Loader />}>
