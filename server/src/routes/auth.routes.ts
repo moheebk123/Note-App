@@ -14,7 +14,7 @@ router
 
 router.route("/login").post(authControllers.handleLogin);
 
-router.route("/logout").get(authControllers.handleLogout);
+router.route("/logout").post(authControllers.handleLogout);
 
 router.route("/check-auth").get(authControllers.handleUserSession);
 
