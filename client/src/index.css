@@ -3,8 +3,10 @@
 #root {
   max-width: 1480px;
   min-height: 100vh;
-  height: fit-content;
   margin: 0 auto;
-  padding: 2rem;
-  border: 1px solid #aaa;
+  padding: 1rem;
+
+  & .box-shadow {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
 }
