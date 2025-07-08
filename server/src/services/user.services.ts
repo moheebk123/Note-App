@@ -46,7 +46,7 @@ export const updateVerification = async (
   userId: StringPayload | ObjectId,
   verificationCode: StringPayload | "" = ""
 ) => {
-  return await User.findByIdAndUpdate(userId, {
+  await User.findByIdAndUpdate(userId, {
     $set: { verificationCode },
   });
 };

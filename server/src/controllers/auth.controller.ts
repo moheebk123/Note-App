@@ -182,26 +182,32 @@ export const handleSendOtp = async (req: Request, res: Response) => {
   const verificationCode = services.generateVerifyCode();
   if (user._id) {
     try {
-      const response = await services.sendVerificationCode(
-        user.email,
-        verificationCode
-      );
+      // const response = await services.sendVerificationCode(
+      //   user.email,
+      //   verificationCode
+      // );
       const loggedUser: UserType = await services.updateVerification(
         user._id.toString(),
         verificationCode
       ) as UserType;
-      if (response) {
+      console.log(loggedUser);
         return res.status(200).json({
-          message: "Code sent successfully",
-          success: true
-        });
-      } else {
-        return res.status(400).json({
           message: "Failed to send code. Please try again!",
-          success: false,
-          otp: loggedUser.verificationCode
+          success: true,
+          otp: verificationCode
         });
-      }
+      // if (response) {
+      //   return res.status(200).json({
+      //     message: "Code sent successfully",
+      //     success: true
+      //   });
+      // } else {
+      //   return res.status(400).json({
+      //     message: "Failed to send code. Please try again!",
+      //     success: false,
+      //     otp: loggedUser.verificationCode
+      //   });
+      // }
     } catch (error) {
       console.log(error);
       return res.status(500).json({
