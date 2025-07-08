@@ -20,19 +20,19 @@ const Error = ({ errorText }: {errorText: ErrorType}) => {
         <h1
           className={`${
             theme === "light" ? "text-gray-200" : "text-gray-800"
-          } ${errorText.primaryText === "404" ? "text-2xl" : "text-xl"}`}
+          } ${errorText.primaryText === "404" ? "text-5xl" : "text-4xl"}`}
         >
           {errorText.primaryText}
         </h1>
         <p
           className={`${
             theme === "light" ? "text-gray-400" : "text-gray-500"
-          } mb-8"`}
+          } text-xl mb-8"`}
         >
           {errorText.secondaryText}
         </p>
         <Link to="/">
-          <button className="bg-blue-600 text-white font-semibold px-5 py-2 text-md">
+          <button className="bg-blue-600 hover:bg-blue-700 hover:cursor-pointer transition-all text-white font-semibold px-5 pt-2 pb-3 rounded-lg text-md">
             Go to Homepage
           </button>
         </Link>

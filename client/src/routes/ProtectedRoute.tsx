@@ -10,7 +10,7 @@ const ProtectedRoute = ({ isAuthenticated, isUserAllowed } : ProtectedPropsType)
   if (isAuthenticated) {
     return isUserAllowed ? <Outlet /> : <Navigate to="/not-allowed" />;
   } else {
-    return isUserAllowed ? <Navigate to="/not-allowed" /> : <Outlet />;
+    return isUserAllowed ? <Navigate to="/auth/login" /> : <Outlet />;
   }
 };
 
