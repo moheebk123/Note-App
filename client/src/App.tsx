@@ -11,7 +11,7 @@ import { NotFound, NotAllowed } from "./pages";
 import { Loader, AlertBox } from "./components";
 import ProtectedRoute from "./routes/ProtectedRoute.jsx";
 import { authService } from "./utils";
-import { userDataActions } from "./store";
+import { alertActions, userDataActions } from "./store";
 
 // Import Pages Through Lazy Loading
 const Home = lazy(() => import("./pages/home/Home.jsx"));
@@ -42,21 +42,41 @@ const LayoutHandler = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const path = window.location.href;
-    const authPath = path.split("/")
-    const hashPath =
-      path[path.length - 1] === "#"
-        ? true
-        : false;
+    const authPath = path.split("/");
+    const hashPath = path[path.length - 1] === "#" ? true : false;
 
     if (hashPath) {
       navigate("/");
     }
-    if (authPath[authPath.length - 1] === 'auth') {
-      navigate("/auth/login")
+    if (authPath[authPath.length - 1] === "auth") {
+      navigate("/auth/login");
     }
+    if (path.includes("/google/callback")) {
+      if (isAuthenticated) {
+        dispatch(
+          alertActions.showAlert({
+            show: true,
+            message: "Google login successful",
+            severity: "success",
+          })
+        );
+      } else {
+        dispatch(
+          alertActions.showAlert({
+            show: true,
+            message: "Google login failed",
+            severity: "error",
+          })
+        );
+      }
+    }
+    setTimeout(() => {
+      dispatch(alertActions.showAlert({}));
+    }, 5000);
   }, [location, navigate]);
 
   return (

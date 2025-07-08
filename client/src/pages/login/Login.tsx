@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type SyntheticEvent } from "react";
-import { hide, show, signIn } from "../../assets";
+import { googleIcon, hide, show, signIn } from "../../assets";
 import { alertActions, userDataActions } from "../../store";
 import { useDispatch } from "react-redux";
 import { authService } from "../../utils";
@@ -184,6 +184,34 @@ const Login = () => {
     }, 5000);
   };
 
+  const handleGoogleLogin = async () => {
+    try {
+      const response = await authService.googleLogin();
+      if (response.success && response.url) {
+        window.location.href = response.url;
+      } else {
+        dispatch(
+          alertActions.showAlert({
+            show: true,
+            severity: "error",
+            message: "Google login failed",
+          })
+        );
+      }
+    } catch {
+      dispatch(
+        alertActions.showAlert({
+          show: true,
+          severity: "error",
+          message: "Google login failed",
+        })
+      );
+    }
+    setTimeout(() => {
+      dispatch(alertActions.showAlert({}));
+    }, 5000);
+  };
+
   return (
     <div className="lg:flex items-center w-full h-full max-h-screen relative">
       <section className="w-full lg:w-[500px] h-screen flex flex-col justify-center md:px-10">
@@ -197,7 +225,9 @@ const Login = () => {
           Please login to continue to your account
         </p>
         <form
-          onSubmit={signInState === "getting-otp" ? handleGetOtp : handleVerifyOtp}
+          onSubmit={
+            signInState === "getting-otp" ? handleGetOtp : handleVerifyOtp
+          }
           className="flex flex-col gap-5 mt-5"
         >
           <input
@@ -226,7 +256,10 @@ const Login = () => {
           ) : (
             <></>
           )}
-          <span className="text-blue-600 font-semibold underline underline-offset-2 cursor-pointer w-fit" onClick={handleResendOtp}>
+          <span
+            className="text-blue-600 font-semibold underline underline-offset-2 cursor-pointer w-fit"
+            onClick={handleResendOtp}
+          >
             Resend OTP
           </span>
           <Button
@@ -234,6 +267,12 @@ const Login = () => {
             type="submit"
           />
         </form>
+        <div
+          className="mt-5 w-fit mx-auto p-2 rounded-full border border-gray-200 hover:bg-gray-50 cursor-pointer transition box-shadow"
+          onClick={handleGoogleLogin}
+        >
+          <img src={googleIcon} alt="Google Login" className="h-10" />
+        </div>
         <p className="text-gray-400 font-semibold text-center mt-8">
           Need an account?{" "}
           <Link

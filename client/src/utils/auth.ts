@@ -49,6 +49,11 @@ class AuthService {
     const res = await axios.get(`${API_URL}/auth/check-auth`);
     return res.data;
   }
+
+  async googleLogin() {
+    const res = await axios.get(`${API_URL}/oauth/google/redirect`);
+    return res.data;
+  }
 }
 
 const authService = new AuthService();

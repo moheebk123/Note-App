@@ -35,7 +35,7 @@ export const handleOAuthRedirect = async (req: Request, res: Response) => {
       .status(200)
       .cookie("google_oauth_state", state, options)
       .cookie("google_code_verifier", codeVerifier, options)
-      .redirect(url.toString());
+      .json({url, success: true})
   } catch (error) {
     console.log(error);
     return res.status(403).json({
@@ -125,7 +125,7 @@ export const handleOAuthCallback = async (req: Request, res: Response) => {
           secure: true,
           maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         })
-        .json({ message: "Google login successfully", success: true });
+        .redirect(`${process.env.ORIGIN}/google/callback`);
     } else {
       const oauthUser = await services.createOAuthUser({
         provider: "google",
@@ -176,7 +176,7 @@ export const handleOAuthCallback = async (req: Request, res: Response) => {
           secure: true,
           maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         })
-        .json({ message: "Google login successfully", success: true });
+        .redirect(`${process.env.ORIGIN}/google/callback`);
     }
   } catch (error) {
     console.log(error);

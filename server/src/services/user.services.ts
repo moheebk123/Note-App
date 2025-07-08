@@ -21,7 +21,7 @@ export const getUserByResetPasswordToken = async (
 };
 
 export const getUserWithOAuthProvider = async (email: String) => {
-  return await User.findOne({ email }).populate("oauthUser");
+  return await User.findOne({ email }).populate("oauthUser").populate("notes");
 };
 
 export const pushNote = async (
