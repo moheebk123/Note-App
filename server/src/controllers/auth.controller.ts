@@ -186,15 +186,12 @@ export const handleSendOtp = async (req: Request, res: Response) => {
       //   user.email,
       //   verificationCode
       // );
-      await services.updateVerification(
-        user._id.toString(),
-        verificationCode
-      );
-        return res.status(200).json({
-          message: "Failed to send code. Please try again!",
-          success: true,
-          otp: verificationCode
-        });
+      await services.updateVerification(user._id.toString(), verificationCode);
+      return res.status(200).json({
+        message: "Failed to send code. Please try again!",
+        success: true,
+        otp: verificationCode,
+      });
       // if (response) {
       //   return res.status(200).json({
       //     message: "Code sent successfully",
@@ -258,9 +255,7 @@ export const handleUserSession = async (req: Request, res: Response) => {
     return res
       .status(200)
       .json({ message: "", success: true, user: { _id, name, email, notes } });
-    } else {
-    return res
-      .status(200)
-      .json({ message: "", success: true, user: {} });
+  } else {
+    return res.status(200).json({ message: "", success: false });
   }
 };
