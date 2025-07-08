@@ -2,10 +2,10 @@ import dotenv from "dotenv"
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import "./types/express";
-import { connectDB } from "./config/db-client.config.ts";
-import * as routes from "./routes/index.routes.ts";
-import {verifyAuthentication} from "./middlewares/verify.middleware.ts";
+// import "./types/express";
+import { connectDB } from "./config/db-client.config.js";
+import * as routes from "./routes/index.routes.js";
+import {verifyAuthentication} from "./middlewares/verify.middleware.js";
 
 dotenv.config();
 
@@ -18,6 +18,7 @@ app.use(
   })
 );
 
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());

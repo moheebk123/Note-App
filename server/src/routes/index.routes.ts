@@ -1,5 +1,5 @@
-import { noteRoutes } from "./note.routes.ts";
-import { authRoutes } from "./auth.routes.ts";
-import { oauthRoutes } from "./oauth.routes.ts";
+import { noteRoutes } from "./note.routes.js";
+import { authRoutes } from "./auth.routes.js";
+import { oauthRoutes } from "./oauth.routes.js";
 
 export { noteRoutes, authRoutes, oauthRoutes };

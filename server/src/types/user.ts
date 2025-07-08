@@ -1,15 +1,13 @@
 import { Types } from "mongoose";
-import { OAuthInterface } from "./oauth";
-import { NoteInterface } from "./note";
+import { OAuthInterface } from "./oauth.js";
+import { NoteInterface } from "./note.js";
 
 export interface UserType {
+  _id?: Types.ObjectId;
   name: string;
   email: string;
-  password: string | "";
   refreshToken: string | "";
-  resetPasswordToken: string | "";
   verificationCode: string | "";
-  isVerified: boolean;
   notes: Array<Types.ObjectId | NoteInterface> | [];
   oauthUser: Types.ObjectId | OAuthInterface;
 }

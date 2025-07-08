@@ -12,13 +12,7 @@ const userSchema = new mongoose.Schema(
       unique: [true, "Email is already present"],
       lowercase: true,
     },
-    password: {
-      type: String,
-      default: undefined,
-    },
     refreshToken: String,
-    resetPasswordToken: String,
-    isVerified: Boolean,
     verificationCode: {
       type: String,
       maxLength: 8,

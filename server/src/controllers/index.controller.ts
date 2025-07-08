@@ -3,22 +3,21 @@ import {
   handleAddNote,
   handleEditNote,
   handleDeleteNote,
-} from "./note.controller.ts";
+} from "./note.controller.js";
 
 import {
   handleRegister,
   handleLogin,
   handleLogout,
-  handleResendVerificationLink,
+  handleSendOtp,
   handleVerifyEmail,
-  handleResetPassword,
-  handleForgetPassword,
+  handleUserSession,
 } from "./auth.controller.js";
 
 import {
   handleOAuthRedirect,
   handleOAuthCallback,
-} from "./oauth.controller.ts";
+} from "./oauth.controller.js";
 
 export {
   handleUserNotes,
@@ -28,10 +27,9 @@ export {
   handleRegister,
   handleLogin,
   handleLogout,
-  handleResendVerificationLink,
+  handleSendOtp,
   handleVerifyEmail,
-  handleResetPassword,
-  handleForgetPassword,
+  handleUserSession,
   handleOAuthRedirect,
   handleOAuthCallback,
 };

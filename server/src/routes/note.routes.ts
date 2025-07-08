@@ -1,6 +1,8 @@
+// @ts-nocheck
+
 import { Router } from "express";
 
-import * as noteControllers from "../controllers/index.controller";
+import * as noteControllers from "../controllers/index.controller.js";
 
 const router = Router();
 
@@ -10,6 +12,6 @@ router.post("/add", noteControllers.handleAddNote);
 
 router.post("/edit/:id", noteControllers.handleEditNote);
 
-router.post("/delete/:id", noteControllers.handleDeleteNote);
+router.delete("/delete/:id", noteControllers.handleDeleteNote);
 
 export const noteRoutes = router;

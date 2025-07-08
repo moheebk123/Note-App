@@ -11,22 +11,25 @@ export const handleUserNotes = async (req: Request, res: Response) => {
       });
     }
 
-    const notes = await services.loadNotes({ createdBy: user._id.toString() });
+    if (user._id) {
+      const notes = await services.loadNotes({
+        createdBy: user._id.toString(),
+      });
 
-    return res.status(200).json({
-      message: "Notes loaded successfully",
-      success: true,
-      notes
-    });
-
+      return res.status(200).json({
+        message: "Notes loaded successfully",
+        success: true,
+        notes,
+      });
+    }
   } catch (error) {
     console.log(error);
-  return res.status(500).json({
-    message: "Internal Server Error. Please try again!",
-    success: false,
-  });
+    return res.status(500).json({
+      message: "Internal Server Error. Please try again!",
+      success: false,
+    });
   }
-}
+};
 
 export const handleAddNote = async (req: Request, res: Response) => {
   try {
@@ -42,20 +45,22 @@ export const handleAddNote = async (req: Request, res: Response) => {
         });
       }
 
-      const newNote = await services.addNote({
-        description,
-        title,
-        createdBy: user._id,
-      });
+      if (user._id) {
+        const newNote = await services.addNote({
+          description,
+          title,
+          createdBy: user._id,
+        });
 
-      if (newNote) {
-        await services.pushNote(user._id, newNote._id.toString());
+        if (newNote) {
+          await services.pushNote(user._id.toString(), newNote._id.toString());
+        }
+
+        return res.status(200).json({
+          message: "Note added successfully",
+          success: true,
+        });
       }
-
-      return res.status(200).json({
-        message: "Note added successfully",
-        success: true,
-      });
     }
   } catch (error) {
     console.log(error);
@@ -80,7 +85,7 @@ export const handleEditNote = async (req: Request, res: Response) => {
     const { id } = req.params;
     const note = await services.getNoteById(id);
 
-    if (note && user._id === note.createdBy.toString()) {
+    if (note && user._id?.toString() === note.createdBy?.toString()) {
       const { title, description } = req.body;
 
       if (!title) {
@@ -127,8 +132,20 @@ export const handleDeleteNote = async (req: Request, res: Response) => {
     const { id } = req.params;
     const note = await services.getNoteById(id);
 
-    if (note && user._id === note.createdBy.toString()) {
-      await services.deleteNote(note._id.toString());
+    if (!note) {
+      return res.status(404).json({
+        message: "Note is not present",
+        success: false,
+      });
+    }
+
+    if (
+      note &&
+      note.createdBy &&
+      user._id &&
+      user._id.toString() === note.createdBy.toString()
+    ) {
+      await services.deleteNote(note?._id?.toString());
       return res.status(200).json({
         message: "Note deleted successfully",
         success: true,

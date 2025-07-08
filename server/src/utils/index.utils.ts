@@ -1,4 +1,4 @@
-import { transporter } from "./email/nodemailer.utils.ts";
-import { google } from "./oauth/google.utils.ts";
+import { transporter } from "./email/nodemailer.utils.js";
+import { google } from "./oauth/google.utils.js";
 
 export { transporter, google };

@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import * as services from "../services/index.services.js";
+import { UserType } from "src/types/user.js";
 
 export const verifyAuthentication = async (req: Request, res: Response, next: NextFunction) => {
   const { access_token, refresh_token } = req.cookies;
@@ -10,7 +11,7 @@ export const verifyAuthentication = async (req: Request, res: Response, next: Ne
 
   try {
     const decodedAccessToken = services.verifyToken(access_token);
-    const loggedUser = await services.getUserById(decodedAccessToken?.id);
+    const loggedUser: UserType = await services.getUserById(decodedAccessToken?.id) as UserType;
     if (loggedUser) {
       req.user = loggedUser;
     }
@@ -29,20 +30,18 @@ export const verifyAuthentication = async (req: Request, res: Response, next: Ne
           return next();
         }
 
-        const loggedUser = await services.getUserById(decodedRefreshToken?.id);
+        const loggedUser: UserType = await services.getUserById(decodedRefreshToken?.id) as UserType;
 
         if (loggedUser) {
           const newAccessToken = services.generateToken(
             {
-              id: loggedUser.id,
+              id: loggedUser._id,
               name: loggedUser.name,
               email: loggedUser.email,
             },
             process.env.JWT_SECRET,
             "1m"
           );
-
-          loggedUser.password = "";
 
           req.user = loggedUser;
           res.cookie("access_token", newAccessToken, {

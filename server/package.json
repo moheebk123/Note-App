@@ -2,12 +2,11 @@
   "name": "note-app",
   "version": "1.0.0",
   "description": "Note app using MERN with Auth and OAuth",
-  "main": "app.js",
+  "main": "dist/app.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/app.ts",
     "build": "tsc",
-    "start": "node dist/app.js"
+    "start": "node --watch dist/app.js"
   },
   "author": "Moheeb Khan",
   "license": "ISC",

@@ -1,6 +1,8 @@
+// @ts-nocheck
+
 import { Router } from "express";
 
-import * as oauthControllers from "../controllers/index.controller.ts";
+import * as oauthControllers from "../controllers/index.controller.js";
 
 const router = Router();
 

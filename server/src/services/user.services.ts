@@ -1,5 +1,6 @@
-import { UserType } from "src/types/user.ts";
-import { User } from "../models/users.model.ts";
+import { UserType } from "src/types/user.js";
+import { User } from "../models/users.model.js";
+import { ObjectId } from "mongoose";
 
 export const createUser = async (newUser: UserType) => {
   return await User.create(newUser);
@@ -9,11 +10,13 @@ export const getUserByEmail = async (email: StringPayload) => {
   return await User.findOne({ email });
 };
 
-export const getUserById = async (userId: StringPayload) => {
+export const getUserById = async (userId: StringPayload | ObjectId) => {
   return await User.findById(userId).populate("notes");
 };
 
-export const getUserByResetPasswordToken = async (resetPasswordToken: StringPayload) => {
+export const getUserByResetPasswordToken = async (
+  resetPasswordToken: StringPayload
+) => {
   return await User.findOne({ resetPasswordToken });
 };
 
@@ -21,40 +24,29 @@ export const getUserWithOAuthProvider = async (email: String) => {
   return await User.findOne({ email }).populate("oauthUser");
 };
 
-export const pushNote = async (userId: StringPayload, newNoteId: StringPayload) => {
+export const pushNote = async (
+  userId: StringPayload | ObjectId,
+  newNoteId: StringPayload
+) => {
   await User.findByIdAndUpdate(userId, {
     $push: { notes: newNoteId },
   });
 };
 
-export const updateRefreshToken = async (userId: StringPayload, refreshToken: StringPayload | "" = "") => {
+export const updateRefreshToken = async (
+  userId: StringPayload | ObjectId,
+  refreshToken: StringPayload | "" = ""
+) => {
   await User.findByIdAndUpdate(userId, {
     $set: { refreshToken },
   });
 };
 
 export const updateVerification = async (
-  userId: StringPayload,
-  verificationCode: StringPayload | "" = "",
-  isVerified: boolean = false
+  userId: StringPayload | ObjectId,
+  verificationCode: StringPayload | "" = ""
 ) => {
-  await User.findByIdAndUpdate(userId, {
-    $set: { verificationCode, isVerified },
-  });
-};
-
-export const updateUserProfile = async (userId: StringPayload, name: StringPayload) => {
   return await User.findByIdAndUpdate(userId, {
-    $set: { name },
+    $set: { verificationCode },
   });
-};
-
-export const updatePassword = async (userId: StringPayload, password: StringPayload) => {
-  return await User.findByIdAndUpdate(userId, {
-    $set: { password },
-  });
-};
-
-export const deleteUser = async (userId: StringPayload) => {
-  return await User.findByIdAndDelete(userId);
 };

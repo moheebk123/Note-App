@@ -1,7 +1,6 @@
 import nodemailer from "nodemailer";
-import SMTPTransport from "nodemailer/lib/smtp-transport";
 
-const transportOptions: SMTPTransport.Options = {
+export const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || "smtp.example.com",
   port: Number(process.env.SMTP_PORT) || 587,
   secure: false,
@@ -9,6 +8,4 @@ const transportOptions: SMTPTransport.Options = {
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASSWORD,
   },
-};
-
-export const transporter = nodemailer.createTransport(transportOptions);
+});

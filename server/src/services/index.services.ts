@@ -1,12 +1,10 @@
 import {
-  hashPassword,
-  isPasswordCorrect,
   generateToken,
   verifyToken,
   generateVerifyCode,
-} from "./auth.services.ts";
+} from "./auth.services.js";
 
-import { sendVerificationCode, sendResetPassword } from "./email.services.ts";
+import { sendVerificationCode } from "./email.services.js";
 
 import {
   loadNotes,
@@ -14,13 +12,13 @@ import {
   getNoteById,
   updateNote,
   deleteNote,
-} from "./note.services.ts";
+} from "./note.services.js";
 
 import {
   createOAuthUser,
   linkOAuthUser,
   deleteOAuthUser,
-} from "./oauthUsers.services.ts";
+} from "./oauthUsers.services.js";
 
 import {
   createUser,
@@ -31,16 +29,13 @@ import {
   pushNote,
   updateRefreshToken,
   updateVerification,
-} from "./user.services.ts";
+} from "./user.services.js";
 
 export {
-  hashPassword,
-  isPasswordCorrect,
   generateToken,
   verifyToken,
   generateVerifyCode,
   sendVerificationCode,
-  sendResetPassword,
   loadNotes,
   addNote,
   getNoteById,

@@ -1,6 +1,6 @@
 import { decodeIdToken, generateCodeVerifier, generateState } from "arctic";
 import * as utils from "../utils/index.utils.js";
-import * as services from "../services/index.services.ts";
+import * as services from "../services/index.services.js";
 import { Request, Response } from "express";
 
 interface GoogleClaims {
@@ -77,7 +77,6 @@ export const handleOAuthCallback = async (req: Request, res: Response) => {
       sub: userId,
       name,
       email,
-      email_verified: isVerified,
     } = claims as GoogleClaims;
 
     const user = await services.getUserWithOAuthProvider(email);
@@ -110,7 +109,6 @@ export const handleOAuthCallback = async (req: Request, res: Response) => {
       );
 
       user.refreshToken = refreshToken;
-      user.isVerified = isVerified;
       user.save({ validateBeforeSave: false });
 
       return res
@@ -138,11 +136,8 @@ export const handleOAuthCallback = async (req: Request, res: Response) => {
         name,
         email,
         refreshToken: "",
-        resetPasswordToken: "",
-        isVerified,
         verificationCode: "",
         oauthUser: oauthUser._id,
-        password: "",
         notes: [],
       });
 
